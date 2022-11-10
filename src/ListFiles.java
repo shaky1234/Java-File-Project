@@ -26,13 +26,13 @@ class ListFiles extends BaseApp{
         if (FolderName.length() == 0) {
             FolderName = "C:/"; //Assuming the user is on a window's machine
         }
-        Path p = Paths.get(FolderName);
+
 
         //Checks if path is a directory
-        if (Files.isDirectory(p)){
+        if (CheckDirectory(FolderName)){
             System.out.printf("%s is a valid folder.%n",FolderName);
             try{
-                FileSet = ListFiles(p); // Grab set of files from the directory
+                FileSet = ListFiles(FolderName); // Grab set of files from the directory
                 //Loops through set for printing in the console
                 for(String f : FileSet){
                     System.out.println(f);
@@ -48,7 +48,8 @@ class ListFiles extends BaseApp{
     /* This method list available files in the folder
     * Returns Set<String>
     * */
-    public Set<String> ListFiles(Path p) throws IOException {
+    public Set<String> ListFiles(String f) throws IOException {
+        Path p = Paths.get(f);
         try (Stream<Path> stream = Files.list(p)) {
             return stream
                     .filter(file -> !Files.isDirectory(file))

@@ -15,6 +15,7 @@ public class Main {
         System.out.println("Welcome to My File Project");
         System.out.println("Please Select one of the following options");
         System.out.println("1: List files in a Directory");
+        System.out.println("2: Move Files from one Directory to Another.");
         try {
             Opt = reader.readLine(); //Listens for user input
         } catch (IOException e){
@@ -22,6 +23,11 @@ public class Main {
         }
 
         switch (Opt){
+            case "2":
+                System.out.println("You picked Option 2");
+                ba = new MoveFiles();
+                ba.RunApp();
+                break;
             default:
                 System.out.println("You picked Option 1");
                 ba = new  ListFiles(); //Create new ListFiles Application
